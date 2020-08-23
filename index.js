@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // console.log(movieData);
 
 // $(document).ready( ()=> {
@@ -16,9 +15,40 @@
 //     // console.log(movieHTML.join(''));
 //     console.log('Testing...');
 // });
+  
+// $(function(){
 
-=======
-$(document).ready( ()=> {
+// 	function renderMovies(movieArray) {
+
+// 		var finalHTML = "";
+
+// 		movieArray.forEach(function(currentMovie){
+
+// 			finalHTML += '<div class="card" style="width: 20rem;">';
+// 			finalHTML += '<img class="card-img-top" src="'+ currentMovie.Poster +'"/>';
+// 			finalHTML += '<div class="card-body">';
+// 			finalHTML += '<h4 class="card-title">'+ currentMovie.Title;
+// 			finalHTML += '<span class="badge badge-secondary float-right">'+ currentMovie.Year +'</span>';
+// 			finalHTML += '</h4>';
+// 			finalHTML += '<a href="#" class="btn btn-primary addButton">Add!</a>';
+// 			finalHTML += '</div>';
+// 			finalHTML += '</div>';
+// 		});
+
+// 		return finalHTML;
+// 	}
+
+// 	$('form').submit(function(e){
+// 		e.preventDefault();
+// 		var movieHTML = renderMovies(movieData);
+// 		$('.movies-container').html(movieHTML);
+// 	});
+
+
+
+// })
+
+$(()=> {
     console.log("Ready")
 
     function renderMovie(movieArray) {
@@ -37,26 +67,32 @@ $(document).ready( ()=> {
 
         $('.results').html(movieHtml.join(' '))
     }
-    renderMovie(movieData);
+    // renderMovie(movieData);
 
 });
 
-    function getMovie() {
-        var movieFind = document.getElementById("search").value;
 
-        console.log(movieFind);
+$('form').submit(function(e){
+  e.preventDefault();
+  var movieHTML = renderMovies(movieData);
+  $('.movies-container').html(movieHTML);
+});
+
+    // function getMovie() {
+    //     var movieFind = document.getElementById("search").value;
+
+    //     console.log(movieFind);
     
-        movieData.forEach(function(item, index){
-          if(item.movieFind == movieFind) {
+    //     movieData.forEach(function(item, index){
+    //       if(item.movieFind == movieFind) {
 
-            renderMovie(movieData);
+    //         renderMovie(movieData);
             // var displayData = "<li><b>User Name</b>: "+ item.username +"</li>"+
             //       "<li><b>EMail</b>: "+ item.email +"</li>"+
             //       "<li><b>Status</b>: "+ item.status +"</li>"+
             //       "<li><b>ID</b>: "+ item.id +"</li>";     
             // $("#display").html(displayData);
-          };
-        });
-    };
->>>>>>> cb9845dcd6fd400e9092a171632983b703eec35d
+    //       };
+    //     });
+    // };
 
