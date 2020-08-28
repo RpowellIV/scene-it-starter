@@ -1,0 +1,50 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search Solution</title>
+  </head>
+  <body>
+    <h1>Movie Search</h1>
+    <form id="search-form">
+      <label for="query">Movie Title</label>
+      <br />
+      <input
+        type="text"
+        name="query"
+        id="query"
+        placeholder="Enter movie title"
+      />
+      <br />
+      <button>Search</button>
+    </form>
+
+    <h2>Results</h2>
+    <ul id="results"></ul>
+
+    <script>
+      document
+        .getElementById("search-form")
+        .addEventListener("submit", function(event) {
+          event.preventDefault();
+          const searchValue = document.getElementById("query").value;
+          let url = "https://api.themoviedb.org/3/search/movie";
+          url += `?api_key={your api key here}`;
+          url += `&query=${encodeURI(searchValue)}`;
+          fetch(url)
+            .then(response => response.json())
+            .then(responseData => showResults(responseData.results))
+            .catch(error => alert("Make sure to put your API key in the code"));
+        });
+
+      function showResults(results) {
+        results.forEach(result => {
+          let item = document.createElement("li");
+          item.innerHTML = result.title;
+          document.getElementById("results").appendChild(item);
+        });
+      };
+    </script>
+  </body>
+</html> -->

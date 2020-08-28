@@ -51,48 +51,72 @@
 $(()=> {
     console.log("Ready")
 
-    function renderMovie(movieArray) {
+    function renderMovies(movieArray) {
         console.log("I'm here")
         // console.log(movieArray)
 
-        movieHtml = movieArray.map( movie => {
+        finalHtml = movieArray.map( movie => {
             return `<div class="card" style="width: 18rem;">
             <img class="card-img-top"id="image" src="${movie.Poster}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title" id="title">${movie.Title}</h5>
               <p class="card-text" id="release-date">${movie.Year}</p>
-              <a href="#" class="btn btn-primary">ADD</a>
+              <a href="#" onclick="saveToWatchlist('${movie.imdbID}')"class="btn btn-primary" id="imdb">ADD</a>
             </div>`
         });
-
-        $('.results').html(movieHtml.join(' '))
+        $('.results').html(finalHtml.join(' '))
     }
-    // renderMovie(movieData);
 
-});
-
-
-$('form').submit(function(e){
-  e.preventDefault();
-  var movieHTML = renderMovies(movieData);
-  $('.movies-container').html(movieHTML);
-});
-
-    // function getMovie() {
-    //     var movieFind = document.getElementById("search").value;
-
-    //     console.log(movieFind);
     
-    //     movieData.forEach(function(item, index){
-    //       if(item.movieFind == movieFind) {
+    // renderMovie(movieData);
+    // $('form').submit(function(e){
+    //   e.preventDefault();
+    //   var movieHTML = renderMovies(movieData);
+    //   $('.movies-container').html(movieHTML);
+      
+      
+    $('form').on("click", function(e){
+      e.preventDefault();
+      renderMovies(movieData)
+      let movieFind = $("#searchIt").val();
+      console.log(`This is ${movieFind}`);   
+      // movieData.forEach(function(item, index){
+      //   if(item.movieFind === movieFind) {
+      //     console.log(item.movieFind);
+      //     var choice = renderMovies(movieData);
+      //     console.log(choice);
+      //   };
+    
+      // });
+      });
 
-    //         renderMovie(movieData);
-            // var displayData = "<li><b>User Name</b>: "+ item.username +"</li>"+
-            //       "<li><b>EMail</b>: "+ item.email +"</li>"+
-            //       "<li><b>Status</b>: "+ item.status +"</li>"+
-            //       "<li><b>ID</b>: "+ item.id +"</li>";     
-            // $("#display").html(displayData);
-    //       };
-    //     });
-    // };
+    //   $('#imdb').click(function(){
+    //     let movie = saveToWatchlist(movie.imdbID);
+    //     console.log(movie);
+    //  });
+
+  });
+
+
+  function saveToWatchlist(imdbID) {
+    console.log(imdbID);
+
+    var movie = movieData.find(function(currentMovie){
+      return currentMovie.imdbID === imdbID;
+    });
+
+    var watchlistJSON = localStorage.getItem('watchlist');
+    console.log(watchlistJSON);
+    var watchlist = JSON.parse(watchlistJSON);
+    console.log(watchlist);
+
+    if (watchlist === null) {
+      watchlist = [];
+    }
+    
+    watchlist.push(movie);
+    watchlistJSON = JSON.stringify(watchlist);
+    localStorage.setItem('watchlist', watchlistJSON);
+};
+
 
