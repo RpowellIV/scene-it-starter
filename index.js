@@ -1,21 +1,4 @@
-// console.log(movieData);
 
-// $(document).ready( ()=> {
-//     function renderMovies(movieArray) {
-//         movieHTML = movieArray.map(movie => {
-//             // console.log(movie);
-//             console.log(movie.Title);
-//             console.log(movie.Year);
-//             $('#image').html(movie.Poster)
-//         });
-//     };
-//     renderMovies(movieData);
-//     // $('#search').click((renderMovies) => {
-    
-//     // console.log(movieHTML.join(''));
-//     console.log('Testing...');
-// });
-  
 // $(function(){
 
 // 	function renderMovies(movieArray) {
@@ -37,16 +20,8 @@
 
 // 		return finalHTML;
 // 	}
-
-// 	$('form').submit(function(e){
-// 		e.preventDefault();
-// 		var movieHTML = renderMovies(movieData);
-// 		$('.movies-container').html(movieHTML);
-// 	});
-
-
-
 // })
+
 
 $(()=> {
     console.log("Ready")
@@ -67,19 +42,25 @@ $(()=> {
         $('.results').html(finalHtml.join(' '))
     }
 
-    
-    // renderMovie(movieData);
-    // $('form').submit(function(e){
-    //   e.preventDefault();
-    //   var movieHTML = renderMovies(movieData);
-    //   $('.movies-container').html(movieHTML);
       
       
-    $('form').on("click", function(e){
-      e.preventDefault();
-      renderMovies(movieData)
-      let movieFind = $("#searchIt").val();
-      console.log(`This is ${movieFind}`);   
+    $('form').on("submit", function(e){
+      e.preventDefault(); 
+      let searchString = $('.search-bar').val();
+      urlEncodedSearchString = encodeURIComponent(searchString);
+      console.log(urlEncodedSearchString);
+
+        let newMovie = fetch(`http://www.omdbapi.com/?apikey=8534d2a7&t=${urlEncodedSearchString}`)
+          .then(response => response.JSON())
+          .then(data => {
+            renderMovies(data.Search);
+          });
+        console.log(newMovie);
+     
+      
+      // movieHTML = renderMovies(movieData)
+      // let movieFind = $(".search-bar").val();
+      // console.log(`This is ${movieFind}`);   
       // movieData.forEach(function(item, index){
       //   if(item.movieFind === movieFind) {
       //     console.log(item.movieFind);
@@ -90,10 +71,6 @@ $(()=> {
       // });
       });
 
-    //   $('#imdb').click(function(){
-    //     let movie = saveToWatchlist(movie.imdbID);
-    //     console.log(movie);
-    //  });
 
   });
 
