@@ -32,7 +32,7 @@ $(()=> {
             renderMovies(data.Search);
           });
         console.log(newMovie);
-     
+        console.log('Is it broken');
       
 
       });
