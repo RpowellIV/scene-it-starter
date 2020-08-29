@@ -25,7 +25,7 @@ $(()=> {
       urlEncodedSearchString = encodeURIComponent(searchString);
       console.log(urlEncodedSearchString);
 
-        let newMovie = fetch(`http://www.omdbapi.com/?apikey=8534d2a7&s=${urlEncodedSearchString}`)
+        let newMovie = fetch(`https://www.omdbapi.com/?apikey=8534d2a7&s=${urlEncodedSearchString}`)
           .then(response => response.json())
           .then(data => {
             console.log(data);
